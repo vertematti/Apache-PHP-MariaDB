@@ -4,7 +4,6 @@ services:
     hostname: "${HOST_NAME}"
     domainname: "${DOMAIN_NAME}"
     image: "${PREFIX}/backend_php:laravel.v11"
-    platform: linux/amd64
     ports:
       - "${BACKEND_PHP_PORT:-80}:80"
     user: root
@@ -35,7 +34,6 @@ services:
     hostname: "${HOST_NAME}_mariadb"
     domainname: "${DOMAIN_NAME}"
     image: "${PREFIX}/mariadb:mariadb.v11"
-    platform: linux/amd64
     restart: "no" 
     user: 1000:1000  
     build:
@@ -62,7 +60,6 @@ services:
     hostname: "${HOST_NAME}_phpmyadmin"
     domainname: "${DOMAIN_NAME}"
     image: phpmyadmin
-    platform: linux/amd64
     depends_on:
       - mariadb 
     ports:
@@ -79,7 +76,6 @@ services:
     container_name: "${PREFIX}_sqliteadmin"
     hostname: "${HOST_NAME}_sqliteadmin"
     image: "${PREFIX}/sqliteadmin:phpliteadmin.v1.9.9-dev"
-    platform: linux/amd64
     volumes:
       - sqlite_data:/db
       - phpliteadmin:/var/www/html
